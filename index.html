@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholar Link Ltd | خدمات القبولات الجامعية والتأشيرات الدراسية حول العالم</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#102a43',
+                            600: '#0b69a3',
+                            700: '#035388',
+                            800: '#012840',
+                            gold: '#d4af37',
+                            goldHover: '#b89628'
+                        }
+                    },
+                    fontFamily: {
+                        ar: ['Cairo', 'sans-serif'],
+                        en: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #020617 100%);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
+
+    <!-- LANGUAGE SELECTION MODAL -->
+    <div id="langModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/85 backdrop-blur-md transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full mx-4 text-center transform border border-amber-500/20">
+            <div class="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border border-amber-500/30">
+                <i data-lucide="globe-2" class="w-10 h-10 text-amber-400"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Scholar Link Ltd</h2>
+            <p class="text-slate-600 mb-8 text-sm">اختر لغة الموقع للمتابعة / Choose your language to continue</p>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="selectLanguage('ar')" class="flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-200 hover:border-amber-500 hover:bg-amber-50/50 transition-all group">
+                    <span class="text-3xl mb-1">🌍 🇮🇶 🇲🇾</span>
+                    <span class="font-bold text-slate-800 group-hover:text-amber-600">العربية</span>
+                </button>
+                <button onclick="selectLanguage('en')" class="flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-slate-200 hover:border-amber-500 hover:bg-amber-50/50 transition-all group">
+                    <span class="text-3xl mb-1">🌐 🇬🇧 🇺🇸</span>
+                    <span class="font-bold text-slate-800 group-hover:text-amber-600">English</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-to-tr from-amber-500 to-amber-300 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 font-black text-xl">
+                    S
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-lg tracking-tight leading-tight text-white">SCHOLAR <span class="text-amber-400">LINK</span> LTD</span>
+                    <span class="text-xs text-slate-400 tracking-wider" data-i18n="logoSub">خدمات القبولات الجامعية العالمية</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="hover:text-amber-400 transition-colors" data-i18n="navAbout">عن الشركة</a>
+                <a href="#services" class="hover:text-amber-400 transition-colors" data-i18n="navServices">خدماتنا</a>
+                <a href="#universities" class="hover:text-amber-400 transition-colors" data-i18n="navUniversities">الجامعات حول العالم</a>
+                <a href="#process" class="hover:text-amber-400 transition-colors" data-i18n="navProcess">خطوات التقديم</a>
+                <a href="#contact" class="hover:text-amber-400 transition-colors" data-i18n="navContact">تواصل معنا</a>
+            </nav>
+
+            <!-- Language Switcher & WhatsApp Direct CTA -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-xs font-semibold text-amber-400 transition-all">
+                    <i data-lucide="languages" class="w-4 h-4"></i>
+                    <span id="langBtnText">EN</span>
+                </button>
+                <a href="https://wa.me/601167770849" target="_blank" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 text-xs sm:text-sm transition-all transform hover:-translate-y-0.5">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span data-i18n="navCTA">تواصل عبر الواتساب</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-gradient relative text-white py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(212,175,55,0.12),transparent_50%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-right" id="heroTextContainer">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-6">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span data-i18n="heroBadge">بوابتك الموثوقة للدراسة في أضخم جامعات العالم</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                        <span data-i18n="heroTitle1">حقق حلمك الأكاديمي مع</span> <br/>
+                        <span class="gold-gradient-text">Scholar Link Ltd</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-8 max-w-2xl" data-i18n="heroDescription">
+                        نقدم خدمات القبولات الجامعية المضمونة، واستشارات التأشيرات الدراسية في ماليزيا، بريطانيا، أمريكا، كندا، أستراليا، تركيا ومختلف دول العالم بكل احترافية.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://wa.me/601167770849" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/20 text-base transition-all flex items-center gap-2">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            <span data-i18n="heroCTA1">تواصل معنا مباشر عبر الواتساب</span>
+                        </a>
+                        <a href="#universities" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all flex items-center gap-2 backdrop-blur-sm" data-i18n="heroCTA2">
+                            استكشف الجامعات
+                        </a>
+                    </div>
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-12 mt-12 border-t border-slate-800">
+                        <div>
+                            <div class="text-3xl font-bold text-amber-400">+2500</div>
+                            <div class="text-xs text-slate-400 mt-1" data-i18n="stat1">طالب تم قبوله</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-amber-400">+15</div>
+                            <div class="text-xs text-slate-400 mt-1" data-i18n="stat2">دولة حول العالم</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-amber-400">+120</div>
+                            <div class="text-xs text-slate-400 mt-1" data-i18n="stat3">جامعة معتمدة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-800/90 border border-slate-700/60 p-6 rounded-3xl shadow-2xl backdrop-blur-md relative">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-700">
+                            <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center text-amber-400">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white">Scholar Link Ltd</h3>
+                                <p class="text-xs text-slate-400" data-i18n="cardSub">مؤسسة رسمية معتمدة للخدمات التعليمية</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-4">
+                                <i data-lucide="file-check" class="w-6 h-6 text-emerald-400 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white" data-i18n="feature1Title">قبولات جامعية عالمية</div>
+                                    <div class="text-xs text-slate-400" data-i18n="feature1Desc">توفير رسائل القبول من جامعات موثوقة بريطانية، ماليزية وأوربية</div>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-4">
+                                <i data-lucide="passport" class="w-6 h-6 text-amber-400 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white" data-i18n="feature2Title">إرشادات وتأشيرات الطلاب</div>
+                                    <div class="text-xs text-slate-400" data-i18n="feature2Desc">متابعة دقيقة لملفات الفيزا والسفارات المعتمدة</div>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center gap-4">
+                                <i data-lucide="award" class="w-6 h-6 text-sky-400 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-semibold text-white" data-i18n="feature3Title">معادل الشهادات والتوجيه</div>
+                                    <div class="text-xs text-slate-400" data-i18n="feature3Desc">مساعدة الطلاب في اختيار التخصص الملائم عالمياً</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Global Education Scholars" class="rounded-3xl shadow-xl border border-slate-100 object-cover w-full h-[400px]">
+                    <div class="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl hidden sm:block border border-slate-800 max-w-xs">
+                        <i data-lucide="globe" class="w-8 h-8 text-amber-400 mb-2"></i>
+                        <p class="text-sm font-bold" data-i18n="aboutCardText">خبرة في توجيه الطلاب للجامعات الحكومية والخاصة حول العالم</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-amber-600 font-bold text-sm uppercase tracking-wider" data-i18n="aboutSubtitle">من نحن</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2 mb-6">Scholar Link Ltd</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6" data-i18n="aboutDesc1">
+                        نحن شركة Scholar Link Ltd المتخصصة في الاستشارات التعليمية وتأمين القبولات الجامعية والتأشيرات الدراسية عبر الشبكة العالمية للجامعات المعتمدة (في ماليزيا، المملكة المتحدة، أمريكا، كندا، تركيا، وغيرها).
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-8" data-i18n="aboutDesc2">
+                        نركز على تسهيل كافة الإجراءات الأكاديمية بدءاً من تجهيز الأوراق وحتى استلام القبول واستخراج الفيزا الدراسية بنجاح للطلاب من جميع الجنسيات.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-6">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-500"></i>
+                            <span class="font-semibold text-slate-800 text-sm" data-i18n="aboutFeat1">شراكات جامعية متعددة</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-500"></i>
+                            <span class="font-semibold text-slate-800 text-sm" data-i18n="aboutFeat2">دعم ومتابعة لمستندات الفيزا</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 bg-slate-50 border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amber-600 font-bold text-sm uppercase tracking-wider" data-i18n="servicesSubtitle">خدماتنا الأكاديمية</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-i18n="servicesTitle">خدماتنا للطلاب حول العالم</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 mb-6">
+                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3" data-i18n="srv1Title">القبولات الجامعية</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-i18n="srv1Desc">تأمين قبولات في أرقى الجامعات العالمية الحكومية والخاصة (بكالوريوس، ماجستير، دكتوراه).</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center text-sky-600 mb-6">
+                        <i data-lucide="passport" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3" data-i18n="srv2Title">معاملات الفيزا والتأشيرات</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-i18n="srv2Desc">متابعة كاملة لملفات التأشيرة الدراسية وتجهيز متطلبات السفارات والهيئات التعليمية الرسمية.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-600 mb-6">
+                        <i data-lucide="languages" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3" data-i18n="srv3Title">معاهد اللغات والدورات</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-i18n="srv3Desc">التسجيل في المعاهد المعتمدة دولياً لتجهيز الطلاب لاختبارات الأيلتس (IELTS) والتوفل (TOEFL).</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-600 mb-6">
+                        <i data-lucide="compass" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3" data-i18n="srv4Title">الإرشاد الأكاديمي</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-i18n="srv4Desc">توجيه الطلاب نحو أحدث التخصصات المطلوبة عالمياً ومساعدتهم في اختيار الوجهة الأنسب.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIVERSITIES SHOWCASE SECTION -->
+    <section id="universities" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-amber-600 font-bold text-sm uppercase tracking-wider" data-i18n="uniSubtitle">الوجهات والجامعات</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2" data-i18n="uniTitle">جامعات موصى بها حول العالم</h2>
+                </div>
+                <p class="text-slate-500 text-sm max-w-md mt-4 md:mt-0" data-i18n="uniDesc">
+                    اضغط على أي جامعة للتعرف على نبذة تفصيلية عنها والتخصصات المتاحة بها.
+                </p>
+            </div>
+
+            <!-- Universities Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- University 1 (UM Malaysia) -->
+                <div onclick="openUniModal('um')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=600&q=80" alt="Universiti Malaya" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇲🇾 Malaysia</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full" data-i18n="uniGov">حكومية</span>
+                            <span class="text-xs font-semibold text-slate-500">QS #60</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Universiti Malaya (UM)</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Kuala Lumpur
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="umShort">أعرق وأعلى جامعة تصنيفاً في ماليزيا للطب والهندسة والعلوم.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University 2 (APU Malaysia) -->
+                <div onclick="openUniModal('apu')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="APU University" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇲🇾 Malaysia</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-sky-600 bg-sky-100 px-2.5 py-1 rounded-full" data-i18n="uniPvt">خاصة</span>
+                            <span class="text-xs font-semibold text-slate-500">Tech & IT</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">APU University</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Technology Park Malaysia
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="apuShort">الرائدة عالمياً في البرمجة والذكاء الاصطناعي والأمن السيبراني.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University 3 (Univ of Manchester UK) -->
+                <div onclick="openUniModal('manchester')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" alt="Univ of Manchester" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇬🇧 UK</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-purple-600 bg-purple-100 px-2.5 py-1 rounded-full">Russell Group</span>
+                            <span class="text-xs font-semibold text-slate-500">QS #32</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">University of Manchester</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Manchester, United Kingdom
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="manchesterShort">إحدى أضخم الجامعات البريطانية المرموقة لإدارة الأعمال والابتكار.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University 4 (UTM Malaysia) -->
+                <div onclick="openUniModal('utm')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=600&q=80" alt="UTM" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇲🇾 Malaysia</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full" data-i18n="uniGov">حكومية</span>
+                            <span class="text-xs font-semibold text-slate-500">Top Engineering</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">UTM Malaysia</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Johor / Kuala Lumpur
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="utmShort">الجامعة الهندسية والتكنولوجية الأولى بالمنطقة.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University 5 (Istanbul Aydin Turkey) -->
+                <div onclick="openUniModal('aydin')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=600&q=80" alt="Istanbul Aydin" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇹🇷 Turkey</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-rose-600 bg-rose-100 px-2.5 py-1 rounded-full">الطب والهندسة</span>
+                            <span class="text-xs font-semibold text-slate-500">Top Turkish</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Istanbul Aydin University</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Istanbul, Turkey
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="aydinShort">جامعة تركية متميزة تدعم التدريس باللغة الإنجليزية في قلب إسطنبول.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- University 6 (Taylor's Malaysia) -->
+                <div onclick="openUniModal('taylor')" class="cursor-pointer bg-slate-50 rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all transform hover:-translate-y-1 group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Taylor's University" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 bg-slate-900/80 text-amber-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">🇲🇾 Malaysia</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-sky-600 bg-sky-100 px-2.5 py-1 rounded-full" data-i18n="uniPvt">خاصة</span>
+                            <span class="text-xs font-semibold text-slate-500">QS #284</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Taylor's University</h3>
+                        <p class="text-xs text-slate-500 flex items-center gap-1 mb-4">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Subang Jaya, Malaysia
+                        </p>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-2" data-i18n="taylorShort">الجامعة الخاصة الأولى في جنوب شرق آسيا لإدارة الأعمال والضيافة.</p>
+                        <div class="inline-flex items-center gap-1 text-sm font-bold text-amber-600 group-hover:underline">
+                            <span data-i18n="viewDetails">اضغط لرؤية التفاصيل</span>
+                            <i data-lucide="chevron-left" class="w-4 h-4 uni-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC UNIVERSITY DETAILS MODAL -->
+    <div id="uniDetailsModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 transition-all">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200">
+            <!-- Modal Header / Image -->
+            <div class="relative h-56 w-full">
+                <img id="modalUniImg" src="" alt="University" class="w-full h-full object-cover">
+                <button onclick="closeUniModal()" class="absolute top-4 right-4 bg-slate-900/80 hover:bg-slate-900 text-white rounded-full p-2 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <span id="modalUniCountry" class="absolute bottom-4 right-4 bg-amber-500 text-slate-950 font-black text-xs px-3 py-1.5 rounded-full"></span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="p-8">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 id="modalUniTitle" class="text-2xl font-extrabold text-slate-900"></h2>
+                    <span id="modalUniRank" class="text-xs font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full"></span>
+                </div>
+                <p id="modalUniLocation" class="text-xs text-slate-500 flex items-center gap-1 mb-6">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-amber-500"></i> <span id="modalUniLocText"></span>
+                </p>
+
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2" data-i18n="overviewTitle">نبذة عن الجامعة</h3>
+                    <p id="modalUniDesc" class="text-slate-600 text-sm leading-relaxed"></p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block mb-1" data-i18n="degreesLabel">المراحل المتاحة</span>
+                        <span id="modalUniDegrees" class="font-bold text-slate-800 text-sm"></span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block mb-1" data-i18n="topMajorsLabel">أبرز التخصصات</span>
+                        <span id="modalUniMajors" class="font-bold text-slate-800 text-sm"></span>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://wa.me/601167770849" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm transition-all">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span data-i18n="applyUniWhatsApp">قدم الآن عبر الواتساب</span>
+                    </a>
+                    <button onclick="closeUniModal()" class="px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition-all" data-i18n="closeModal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP BY STEP PROCESS SECTION -->
+    <section id="process" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amber-400 font-bold text-sm uppercase tracking-wider" data-i18n="procSubtitle">خطوات التسجيل</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 text-white" data-i18n="procTitle">كيف تبدأ مع Scholar Link Ltd؟</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60 relative">
+                    <div class="w-10 h-10 bg-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center text-lg mb-4">1</div>
+                    <h3 class="font-bold text-lg mb-2 text-white" data-i18n="step1Title">التواصل الأولي</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="step1Desc">تحديد الوجهة والتخصص المناسب مع مسؤول القبولات عبر الواتساب أو الإيميل.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60 relative">
+                    <div class="w-10 h-10 bg-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center text-lg mb-4">2</div>
+                    <h3 class="font-bold text-lg mb-2 text-white" data-i18n="step2Title">تجهيز وثائق التقديم</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="step2Desc">فحص وترجمة الشهادات وتوفير كافة متطلبات الجامعة المختارة.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60 relative">
+                    <div class="w-10 h-10 bg-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center text-lg mb-4">3</div>
+                    <h3 class="font-bold text-lg mb-2 text-white" data-i18n="step3Title">إصدار القبول الرسمي</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="step3Desc">متابعة ملفك لدى الجامعة حتى الحصول على خطاب القبول النهائي (Offer Letter).</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60 relative">
+                    <div class="w-10 h-10 bg-amber-500 text-slate-950 font-black rounded-xl flex items-center justify-center text-lg mb-4">4</div>
+                    <h3 class="font-bold text-lg mb-2 text-white" data-i18n="step4Title">إجراءات الفيزا</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="step4Desc">توجيه الطالب خطوة بخطوة للحصول على التأشيرة الدراسية بكل يسر.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 text-white rounded-3xl shadow-2xl p-8 lg:p-14 border border-slate-800 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.15),transparent_70%)]"></div>
+                
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <span class="text-amber-400 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 inline-block mb-4" data-i18n="contactBadge">تواصل مباشر وسريع</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="socialContactTitle">تواصل معنا عبر منصات التواصل الاجتماعي</h2>
+                    <p class="text-slate-300 text-base leading-relaxed mb-10" data-i18n="socialContactDesc">
+                        مستشارو Scholar Link Ltd جاهزون للرد على كافة استفساراتكم حول القبولات والفيزا الدراسية مباشرة عبر المنصة الأنسب لكم.
+                    </p>
+
+                    <!-- Social Networks Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 mb-10 text-right">
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/601167770849" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 hover:bg-emerald-600/20 border border-slate-700/80 hover:border-emerald-500/50 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialWa">واتساب المباشر</div>
+                                <div class="font-bold text-white text-sm dir-ltr text-right truncate">+60 11-6777 0849</div>
+                            </div>
+                        </a>
+
+                        <!-- Telegram -->
+                        <a href="https://t.me/scholarlink" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 hover:bg-sky-600/20 border border-slate-700/80 hover:border-sky-500/50 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="send" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialTg">تليجرام</div>
+                                <div class="font-bold text-white text-sm truncate">@ScholarLink</div>
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:info@scholarlinkltd.com" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 hover:bg-amber-600/20 border border-slate-700/80 hover:border-amber-500/50 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialMail">البريد الإلكتروني</div>
+                                <div class="font-bold text-white text-xs sm:text-sm truncate">info@scholarlinkltd.com</div>
+                            </div>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 hover:bg-pink-600/20 border border-slate-700/80 hover:border-pink-500/50 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialIg">إنستغرام</div>
+                                <div class="font-bold text-white text-sm truncate">@ScholarLinkLtd</div>
+                            </div>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 hover:bg-blue-600/20 border border-slate-700/80 hover:border-blue-500/50 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="facebook" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialFb">فيسبوك</div>
+                                <div class="font-bold text-white text-sm truncate">Scholar Link Ltd</div>
+                            </div>
+                        </a>
+
+                        <!-- Location -->
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="w-12 h-12 rounded-xl bg-slate-700 text-amber-400 flex items-center justify-center shrink-0">
+                                <i data-lucide="globe-2" class="w-6 h-6"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-slate-400" data-i18n="socialLoc">نطاق الخدمات</div>
+                                <div class="font-bold text-white text-xs sm:text-sm truncate" data-i18n="socialLocVal">ماليزيا وحول العالم</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="https://wa.me/601167770849" target="_blank" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-emerald-600/25 transition-all transform hover:-translate-y-0.5 text-base">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        <span data-i18n="ctaDirectWa">مراسلة فورية عبر الواتساب</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/601167770849" target="_blank" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center text-slate-950 font-bold">S</div>
+                <span class="text-sm font-bold text-white">SCHOLAR LINK LTD</span>
+            </div>
+            <p class="text-xs text-slate-500" data-i18n="copyright">
+                © 2026 Scholar Link Ltd. جميع الحقوق محفوظة.
+            </p>
+        </div>
+    </footer>
+
+    <!-- TRANSLATION & MODAL DATA -->
+    <script>
+        const translations = {
+            ar: {
+                logoSub: "خدمات القبولات الجامعية العالمية",
+                navAbout: "عن الشركة",
+                navServices: "خدماتنا",
+                navUniversities: "الجامعات حول العالم",
+                navProcess: "خطوات التقديم",
+                navContact: "تواصل معنا",
+                navCTA: "تواصل عبر الواتساب",
+                heroBadge: "بوابتك الموثوقة للدراسة في أضخم جامعات العالم",
+                heroTitle1: "حقق حلمك الأكاديمي مع",
+                heroDescription: "نقدم خدمات القبولات الجامعية المضمونة، واستشارات التأشيرات الدراسية في ماليزيا، بريطانيا، أمريكا، كندا، أستراليا، تركيا ومختلف دول العالم بكل احترافية.",
+                heroCTA1: "تواصل معنا مباشر عبر الواتساب",
+                heroCTA2: "استكشف الجامعات",
+                stat1: "طالب تم قبوله",
+                stat2: "دولة حول العالم",
+                stat3: "جامعة معتمدة",
+                cardSub: "مؤسسة رسمية معتمدة للخدمات التعليمية",
+                feature1Title: "قبولات جامعية عالمية",
+                feature1Desc: "توفير رسائل القبول من جامعات موثوقة بريطانية، ماليزية وأوربية",
+                feature2Title: "إرشادات وتأشيرات الطلاب",
+                feature2Desc: "متابعة دقيقة لملفات الفيزا والسفارات المعتمدة",
+                feature3Title: "معادلة الشهادات والتوجيه",
+                feature3Desc: "مساعدة الطلاب في اختيار التخصص الملائم عالمياً",
+                aboutSubtitle: "من نحن",
+                aboutDesc1: "نحن شركة Scholar Link Ltd المتخصصة في الاستشارات التعليمية وتأمين القبولات الجامعية والتأشيرات الدراسية عبر الشبكة العالمية للجامعات المعتمدة (في ماليزيا، المملكة المتحدة، أمريكا، كندا، تركيا، وغيرها).",
+                aboutDesc2: "نركز على تسهيل كافة الإجراءات الأكاديمية بدءاً من تجهيز الأوراق وحتى استلام القبول واستخراج الفيزا الدراسية بنجاح للطلاب من جميع الجنسيات.",
+                aboutFeat1: "شراكات جامعية متعددة",
+                aboutFeat2: "دعم ومتابعة لمستندات الفيزا",
+                aboutCardText: "خبرة في توجيه الطلاب للجامعات الحكومية والخاصة حول العالم",
+                servicesSubtitle: "خدماتنا الأكاديمية",
+                servicesTitle: "خدماتنا للطلاب حول العالم",
+                srv1Title: "القبولات الجامعية",
+                srv1Desc: "تأمين قبولات في أرقى الجامعات العالمية الحكومية والخاصة (بكالوريوس، ماجستير، دكتوراه).",
+                srv2Title: "معاملات الفيزا والتأشيرات",
+                srv2Desc: "متابعة كاملة لملفات التأشيرة الدراسية وتجهيز متطلبات السفارات والهيئات التعليمية الرسمية.",
+                srv3Title: "معاهد اللغات والدورات",
+                srv3Desc: "التسجيل في المعاهد المعتمدة دولياً لتجهيز الطلاب لاختبارات الأيلتس (IELTS) والتوفل (TOEFL).",
+                srv4Title: "الإرشاد الأكاديمي",
+                srv4Desc: "توجيه الطلاب نحو أحدث التخصصات المطلوبة عالمياً ومساعدتهم في اختيار الوجهة الأنسب.",
+                uniSubtitle: "الوجهات والجامعات",
+                uniTitle: "جامعات موصى بها حول العالم",
+                uniDesc: "اضغط على أي جامعة للتعرف على نبذة تفصيلية عنها والتخصصات المتاحة بها.",
+                uniGov: "حكومية",
+                uniPvt: "خاصة",
+                viewDetails: "اضغط لرؤية التفاصيل",
+                umShort: "أعرق وأعلى جامعة تصنيفاً في ماليزيا للطب والهندسة والعلوم.",
+                apuShort: "الرائدة عالمياً في البرمجة والذكاء الاصطناعي والأمن السيبراني.",
+                manchesterShort: "إحدى أضخم الجامعات البريطانية المرموقة لإدارة الأعمال والابتكار.",
+                utmShort: "الجامعة الهندسية والتكنولوجية الأولى بالمنطقة.",
+                aydinShort: "جامعة تركية متميزة تدعم التدريس باللغة الإنجليزية في قلب إسطنبول.",
+                taylorShort: "الجامعة الخاصة الأولى في جنوب شرق آسيا لإدارة الأعمال والضيافة.",
+                procSubtitle: "خطوات التسجيل",
+                procTitle: "كيف تبدأ مع Scholar Link Ltd؟",
+                step1Title: "التواصل الأولي",
+                step1Desc: "تحديد الوجهة والتخصص المناسب مع مسؤول القبولات عبر الواتساب أو الإيميل.",
+                step2Title: "تجهيز وثائق التقديم",
+                step2Desc: "فحص وترجمة الشهادات وتوفير كافة متطلبات الجامعة المختارة.",
+                step3Title: "إصدار القبول الرسمي",
+                step3Desc: "متابعة ملفك لدى الجامعة حتى الحصول على خطاب القبول النهائي (Offer Letter).",
+                step4Title: "إجراءات الفيزا",
+                step4Desc: "توجيه الطالب خطوة بخطوة للحصول على التأشيرة الدراسية بكل يسر.",
+                formSubtitle: "تواصل مباشر",
+                formTitle: "تواصل مع مستشارينا اليوم",
+                formDesc: "فريق Scholar Link Ltd جاهز للإجابة على جميع الاستفسارات الخاصة بالقبولات والتخصصات والفيزا الدراسية.",
+                phoneLabel: "الواتساب المباشر (اضغط للتواصل)",
+                emailLabel: "البريد الإلكتروني الرسمي",
+                locationLabel: "نطاق الخدمات",
+                address: "ماليزيا، بريطانيا، أمريكا، تركيا وحول العالم",
+                contactBadge: "تواصل مباشر وسريع",
+                socialContactTitle: "تواصل معنا عبر منصات التواصل الاجتماعي",
+                socialContactDesc: "مستشارو Scholar Link Ltd جاهزون للرد على كافة استفساراتكم حول القبولات والفيزا الدراسية مباشرة عبر المنصة الأنسب لكم.",
+                socialWa: "واتساب المباشر",
+                socialTg: "تليجرام",
+                socialMail: "البريد الإلكتروني",
+                socialIg: "إنستغرام",
+                socialFb: "فيسبوك",
+                socialLoc: "نطاق الخدمات",
+                socialLocVal: "ماليزيا وحول العالم",
+                ctaDirectWa: "مراسلة فورية عبر الواتساب",
+                copyright: "© 2026 Scholar Link Ltd. جميع الحقوق محفوظة.",
+                overviewTitle: "نبذة عن الجامعة",
+                degreesLabel: "المراحل المتاحة",
+                topMajorsLabel: "أبرز التخصصات",
+                applyUniWhatsApp: "قدم الآن عبر الواتساب",
+                closeModal: "إغلاق"
+            },
+            en: {
+                logoSub: "Global Academic Admissions Services",
+                navAbout: "About Us",
+                navServices: "Services",
+                navUniversities: "Global Universities",
+                navProcess: "Admission Steps",
+                navContact: "Contact Us",
+                navCTA: "Chat via WhatsApp",
+                heroBadge: "Your Trusted Gateway to Top Universities Worldwide",
+                heroTitle1: "Achieve Your Educational Dream with",
+                heroDescription: "We deliver guaranteed university offer letters and student visa counseling in Malaysia, UK, USA, Canada, Australia, Turkey, and worldwide.",
+                heroCTA1: "Contact Directly via WhatsApp",
+                heroCTA2: "Explore Universities",
+                stat1: "Admitted Students",
+                stat2: "Countries Worldwide",
+                stat3: "Partner Universities",
+                cardSub: "Officially Certified Global Educational Agency",
+                feature1Title: "Global University Offers",
+                feature1Desc: "Providing offer letters from reputable UK, European, and Asian universities",
+                feature2Title: "Student Visa Guidance",
+                feature2Desc: "Comprehensive embassy requirements and student visa support",
+                feature3Title: "Qualification Assessment",
+                feature3Desc: "Assisting students in choosing optimal programs globally",
+                aboutSubtitle: "Who We Are",
+                aboutDesc1: "Scholar Link Ltd is a premier educational firm specializing in university admissions and student visas across a global network of accredited universities.",
+                aboutDesc2: "We streamline all academic procedures from document preparation to offer issuance and successful visa processing for international students.",
+                aboutFeat1: "Extensive University Partnerships",
+                aboutFeat2: "Full Visa File Guidance",
+                aboutCardText: "Guiding students to leading public & private universities worldwide",
+                servicesSubtitle: "Academic Services",
+                servicesTitle: "Our Services for Worldwide Students",
+                srv1Title: "University Admissions",
+                srv1Desc: "Securing placements in top-tier public and private universities for Bachelor's, Master's, and PhD.",
+                srv2Title: "Visa Processing",
+                srv2Desc: "Full tracking of student visas and preparing embassy & immigration requirements.",
+                srv3Title: "Language Institutes",
+                srv3Desc: "Enrolling students in international language centers for IELTS and TOEFL preparation.",
+                srv4Title: "Academic Counseling",
+                srv4Desc: "Directing students to in-demand future careers and matching destinations.",
+                uniSubtitle: "Destinations & Universities",
+                uniTitle: "Featured Universities Worldwide",
+                uniDesc: "Click on any university card to view an overview, top majors, and details.",
+                uniGov: "Public",
+                uniPvt: "Private",
+                viewDetails: "Click for details",
+                umShort: "Malaysia's top-ranked university excelling in Medicine, Engineering, and Sciences.",
+                apuShort: "Global leader in Computer Science, Artificial Intelligence, and Cybersecurity.",
+                manchesterShort: "Prestigious British Russell Group university renowned for Business & Innovation.",
+                utmShort: "The leading engineering and technology research university in Southeast Asia.",
+                aydinShort: "Premier Turkish university offering English-medium programs in the heart of Istanbul.",
+                taylorShort: "Top private university in SE Asia known for Business, Design & Hospitality.",
+                procSubtitle: "Registration Process",
+                procTitle: "How to Start with Scholar Link Ltd?",
+                step1Title: "Initial Contact",
+                step1Desc: "Select destination and program with our counselor via WhatsApp or Email.",
+                step2Title: "Document Preparation",
+                step2Desc: "Reviewing and translating transcripts to fulfill university requirements.",
+                step3Title: "Official Offer Issuance",
+                step3Desc: "Tracking your application until receiving the official Offer Letter.",
+                step4Title: "Visa Application",
+                step4Desc: "Guiding the student step-by-step to obtain the study visa smoothly.",
+                formSubtitle: "Direct Inquiry",
+                formTitle: "Speak with Our Counselors Today",
+                formDesc: "The Scholar Link Ltd team is ready to answer all your questions regarding admissions, majors, and visas.",
+                phoneLabel: "Direct WhatsApp (Click to chat)",
+                emailLabel: "Official Email Address",
+                locationLabel: "Global Coverage",
+                address: "Malaysia, UK, USA, Turkey & Worldwide",
+                contactBadge: "Fast & Direct Contact",
+                socialContactTitle: "Connect With Us On Social Media",
+                socialContactDesc: "Scholar Link Ltd counselors are ready to answer all your admission and visa inquiries through your preferred platform.",
+                socialWa: "Direct WhatsApp",
+                socialTg: "Telegram",
+                socialMail: "Official Email",
+                socialIg: "Instagram",
+                socialFb: "Facebook",
+                socialLoc: "Coverage Area",
+                socialLocVal: "Malaysia & Worldwide",
+                ctaDirectWa: "Instant Chat via WhatsApp",
+                copyright: "© 2026 Scholar Link Ltd. All rights reserved.",
+                overviewTitle: "University Overview",
+                degreesLabel: "Available Degrees",
+                topMajorsLabel: "Top Majors",
+                applyUniWhatsApp: "Apply Now via WhatsApp",
+                closeModal: "Close"
+            }
+        };
+
+        const uniData = {
+            um: {
+                title: "Universiti Malaya (UM)",
+                country: "🇲🇾 Malaysia",
+                rank: "QS Rank #60",
+                location: "Kuala Lumpur, Malaysia",
+                img: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "جامعة مالايا هي أقدم وأعرق جامعة حكومية في ماليزيا. تُصنف ضمن أفضل 60 جامعة عالمياً وفق QS، وتتميز بكلياتها الطبية والهندسية المتقدمة والمستشفيات الجامعية التابعة لها.",
+                    en: "Universiti Malaya is Malaysia's oldest and premier public research university ranked #60 globally by QS. It excels in Medicine, Engineering, Law, and Natural Sciences."
+                },
+                degrees: "BSc, MSc, PhD",
+                majors: {
+                    ar: "الطب، الهندسة المدنية، إدارة الأعمال، علوم الحاسوب",
+                    en: "Medicine, Civil Engineering, Business, Computer Science"
+                }
+            },
+            apu: {
+                title: "APU University",
+                country: "🇲🇾 Malaysia",
+                rank: "5-Star Tech Uni",
+                location: "Technology Park, Kuala Lumpur",
+                img: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "جامعة آسيا والمحيط الهادئ للتكنولوجيا والابتكار (APU) هي الوجهة الأولى في المنطقة للتخصصات البرمجية، الذكاء الاصطناعي، والأمن السيبراني وتوفر فرصة شهادات مزدوجة مع جامعة دي مونتفورت البريطانية.",
+                    en: "Asia Pacific University (APU) is a premier technology university renowned for Artificial Intelligence, Software Engineering, and Cyber Security with dual-degree options with DMU UK."
+                },
+                degrees: "Diploma, BSc, MSc, PhD",
+                majors: {
+                    ar: "الذكاء الاصطناعي، البرمجة، الأمن السيبراني، تحليل البيانات",
+                    en: "Artificial Intelligence, Software Eng, Cyber Security, Data Analytics"
+                }
+            },
+            manchester: {
+                title: "University of Manchester",
+                country: "🇬🇧 United Kingdom",
+                rank: "QS Rank #32",
+                location: "Manchester, United Kingdom",
+                img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "جامعة مانشستر هي عضو بارز في مجموعة 'راسل' للجامعات البريطانية الكبرى. تتميز بمخرجات بحثية فائقة وتصنيف عالمي متقدم في التجارة والابتكار التكنولوجي والهندسة.",
+                    en: "The University of Manchester is a prestigious Russell Group member in the UK, ranked #32 globally, famous for Business, Innovation, Finance, and Advanced Engineering."
+                },
+                degrees: "BSc, MSc, PhD",
+                majors: {
+                    ar: "إدارة الأعمال، المالية، الهندسة الميكانيكية، العلوم الحيوية",
+                    en: "Business, Finance, Mechanical Eng, Bioscience"
+                }
+            },
+            utm: {
+                title: "Universiti Teknologi Malaysia (UTM)",
+                country: "🇲🇾 Malaysia",
+                rank: "Engineering #1",
+                location: "Johor Bahru & Kuala Lumpur",
+                img: "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "تعتبر جامعة UTM الصرح الهندسي والأكاديمي الأول في ماليزيا للعلوم والتكنولوجيا والتصاميم الهندسة والمعمارية المتقدمة مع اعترافات دولية واسعة.",
+                    en: "UTM is Malaysia's leading engineering and technological public research university, specializing in innovation, architecture, robotics, and industrial technology."
+                },
+                degrees: "BSc, MSc, PhD",
+                majors: {
+                    ar: "الهندسة الكهربائية، الهندسة المعمارية، النفط والغاز",
+                    en: "Electrical Eng, Architecture, Petroleum Eng, Robotics"
+                }
+            },
+            aydin: {
+                title: "Istanbul Aydin University",
+                country: "🇹🇷 Turkey",
+                rank: "Top Turkish Private",
+                location: "Istanbul, Turkey",
+                img: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "جامعة إسطنبول أيدن من أضخم الجامعات التركية الخاصة المعترف بها دولياً. تتميز بحرم جامعي حديث في قلب إسطنبول وتدريس أغلب التخصصات باللغة الإنجليزية.",
+                    en: "Istanbul Aydin University is a premier international university in Turkey with state-of-the-art medical and engineering labs, fully taught in English."
+                },
+                degrees: "Associate, BSc, MSc, PhD",
+                majors: {
+                    ar: "طب الأسنان، الطب البشري، الهندسة المدنية، الإدارة",
+                    en: "Dentistry, Human Medicine, Civil Eng, Management"
+                }
+            },
+            taylor: {
+                title: "Taylor's University",
+                country: "🇲🇾 Malaysia",
+                rank: "QS Rank #284",
+                location: "Subang Jaya, Malaysia",
+                img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
+                desc: {
+                    ar: "جامعة تايلورز هي الجامعة الخاصة رقم 1 في ماليزيا وجنوب شرق آسيا، وتتميز ببيئة تعليمية فاخرة وتخصصات قوية في الضيافة وإدارة الأعمال والتصميم.",
+                    en: "Taylor's University is ranked Southeast Asia's #1 private university, famous for Business Administration, Hospitality, Architecture, and Pharmacy."
+                },
+                degrees: "Diploma, BSc, MSc, PhD",
+                majors: {
+                    ar: "إدارة الضيافة والسياحة، إدارة الأعمال، الصيدلة، التصميم",
+                    en: "Hospitality Management, Business, Pharmacy, Design"
+                }
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function selectLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('langModal').classList.add('hidden');
+            applyLanguage();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            const html = document.documentElement;
+            html.lang = currentLang;
+            html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            document.getElementById('langBtnText').innerText = currentLang === 'ar' ? 'EN' : 'العربية';
+
+            const heroTextContainer = document.getElementById('heroTextContainer');
+            if (heroTextContainer) {
+                if (currentLang === 'en') {
+                    heroTextContainer.classList.remove('text-right');
+                    heroTextContainer.classList.add('text-left');
+                } else {
+                    heroTextContainer.classList.remove('text-left');
+                    heroTextContainer.classList.add('text-right');
+                }
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+
+            lucide.createIcons();
+        }
+
+        function openUniModal(uniKey) {
+            const uni = uniData[uniKey];
+            if (!uni) return;
+
+            document.getElementById('modalUniImg').src = uni.img;
+            document.getElementById('modalUniTitle').innerText = uni.title;
+            document.getElementById('modalUniCountry').innerText = uni.country;
+            document.getElementById('modalUniRank').innerText = uni.rank;
+            document.getElementById('modalUniLocText').innerText = uni.location;
+            document.getElementById('modalUniDesc').innerText = uni.desc[currentLang];
+            document.getElementById('modalUniDegrees').innerText = uni.degrees;
+            document.getElementById('modalUniMajors').innerText = uni.majors[currentLang];
+
+            document.getElementById('uniDetailsModal').classList.remove('hidden');
+        }
+
+        function closeUniModal() {
+            document.getElementById('uniDetailsModal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('formSuccess');
+            successBox.classList.remove('hidden');
+            event.target.reset();
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
